@@ -89,6 +89,25 @@
 				<string>___PACKAGENAME___/PrefixHeader.pch</string>
 			</dict>
 			<key>BuildPhases</key>
+			<array/>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>___VARIABLE_TargetAppName___</string>
+			<key>ProductType</key>
+			<string>com.apple.product-type.application</string>
+			<key>SharedSettings</key>
+			<dict>
+				<key>INFOPLIST_FILE</key>
+				<string>___PACKAGENAME___/Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>___VARIABLE_TargetAppName___</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+			</dict>
+			<key>BuildPhases</key>
 			<array>
 				<dict>
 					<key>Class</key>
@@ -112,25 +131,6 @@ cp -r &quot;${BUILT_PRODUCTS_DIR}/${FRAMEWORK_NAME}.framework&quot; ${APP_BUNDLE
 insert_dylib --all-yes &quot;@loader_path/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}&quot; &quot;$APP_EXECUTABLE_PATH&quot; &quot;$APP_EXECUTABLE_PATH&quot;</string>
 				</dict>
 			</array>
-		</dict>
-		<dict>
-			<key>Name</key>
-			<string>___VARIABLE_TargetAppName___</string>
-			<key>ProductType</key>
-			<string>com.apple.product-type.application</string>
-			<key>SharedSettings</key>
-			<dict>
-				<key>INFOPLIST_FILE</key>
-				<string>___PACKAGENAME___/Info.plist</string>
-				<key>PRODUCT_NAME</key>
-				<string>___VARIABLE_TargetAppName___</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-			</dict>
-			<key>BuildPhases</key>
-			<array/>
 			<key>Dependencies</key>
 			<array>
 				<string>plugin</string>

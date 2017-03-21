@@ -94,6 +94,29 @@
 				<string>iPhone Developer</string>
 			</dict>
 			<key>BuildPhases</key>
+			<array/>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>___VARIABLE_TargetAppName___</string>
+			<key>ProductType</key>
+			<string>com.apple.product-type.application</string>
+			<key>SharedSettings</key>
+			<dict>
+				<key>INFOPLIST_FILE</key>
+				<string>___PACKAGENAME___/Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>___VARIABLE_TargetAppName___</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>___VARIABLE_TargetAppBundleId___</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY</key>
+				<string>iPhone Developer</string>
+			</dict>
+			<key>BuildPhases</key>
 			<array>
 				<dict>
 					<key>Class</key>
@@ -122,7 +145,7 @@ mkdir -p &quot;Payload/${APP_NAME}/Frameworks&quot;
 cp -r &quot;${FRAMEWORK_PATH}&quot; &quot;Payload/${APP_NAME}/Frameworks&quot;
 
 plutil -replace CFBundleIdentifier -string ${BUNDLE_IDENTIFIER} &quot;Payload/${APP_NAME}/Info.plist&quot;
-insert_dylib --all-yes @rpath/${FRAMEWORK_EXECUTABLE} &quot;Payload/${APP_NAME}/${APP_EXECUTABLE}&quot;
+insert_dylib --all-yes @executable_path/Frameworks/${FRAMEWORK_EXECUTABLE} &quot;Payload/${APP_NAME}/${APP_EXECUTABLE}&quot;
 mv &quot;Payload/${APP_NAME}/${APP_EXECUTABLE}_patched&quot; &quot;Payload/$APP_NAME/${APP_EXECUTABLE}&quot;
 chmod +x &quot;Payload/${APP_NAME}/${APP_EXECUTABLE}&quot;
 
@@ -134,29 +157,6 @@ mv &quot;Payload/${APP_NAME}&quot; ${BUILT_PRODUCTS_DIR}
 rm -rf ${TEMP_DIR}</string>
 				</dict>
 			</array>
-		</dict>
-		<dict>
-			<key>Name</key>
-			<string>___VARIABLE_TargetAppName___</string>
-			<key>ProductType</key>
-			<string>com.apple.product-type.application</string>
-			<key>SharedSettings</key>
-			<dict>
-				<key>INFOPLIST_FILE</key>
-				<string>___PACKAGENAME___/Info.plist</string>
-				<key>PRODUCT_NAME</key>
-				<string>___VARIABLE_TargetAppName___</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>___VARIABLE_TargetAppBundleId___</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY</key>
-				<string>iPhone Developer</string>
-			</dict>
-			<key>BuildPhases</key>
-			<array/>
 			<key>Dependencies</key>
 			<array>
 				<string>plugin</string>
