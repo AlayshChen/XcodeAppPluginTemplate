@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Kind</key>
+	<string>Xcode.Xcode3.ProjectTemplateUnitKind</string>
+	<key>Identifier</key>
+	<string>com.corbin.pluginFramework-mac</string>
+	<key>Concrete</key>
+	<true/>
+	<key>Description</key>
+	<string>This template builds a plugin framework that links against the Foundation and UIKit frameworks.</string>
+	<key>Platforms</key>
+	<array>
+		<string>com.apple.platform.macosx</string>
+	</array>
+	<key>Ancestors</key>
+	<array>
+		<string>com.apple.dt.unit.frameworkBase</string>
+		<string>com.apple.dt.unit.macBase</string>
+	</array>
+	<key>Project</key>
+	<dict>
+		<key>SharedSettings</key>
+		<dict>
+			<key>TARGETED_DEVICE_FAMILY</key>
+			<string>1,2</string>
+			<key>GCC_WARN_ABOUT_MISSING_PROTOTYPES</key>
+			<string>YES</string>
+			<key>GCC_WARN_UNUSED_VARIABLE</key>
+			<string>YES</string>
+			<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+			<string>YES</string>
+			<key>GCC_C_LANGUAGE_STANDARD</key>
+			<string>gnu99</string>
+			<key>EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES</key>
+			<string>*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj</string>
+		</dict>
+		<key>Configurations</key>
+		<dict>
+			<key>Debug</key>
+			<dict>
+				<key>VALIDATE_PRODUCT</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<string>DEBUG=1 $(inherited)</string>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+			</dict>
+			<key>Release</key>
+			<dict>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+		</dict>
+	</dict>
+	<key>Targets</key>
+	<array>
+		<dict>
+			<key>ProductType</key>
+			<string>com.apple.product-type.framework</string>
+			<key>TargetIdentifier</key>
+			<string>plugin</string>
+			<key>SharedSettings</key>
+			<dict>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>___PACKAGENAME___/PrefixHeader.pch</string>
+			</dict>
+			<key>BuildPhases</key>
+			<array>
+				<dict>
+					<key>Class</key>
+					<string>ShellScript</string>
+					<key>ShellPath</key>
+					<string>/bin/sh</string>
+					<key>ShowEnvVarsInLog</key>
+					<string>true</string>
+					<key>ShellScript</key>
+					<string>APP_NAME=&quot;___VARIABLE_TargetAppName___&quot;
+FRAMEWORK_NAME=&quot;___PACKAGENAME___&quot;
+
+rm -rf &quot;${BUILT_PRODUCTS_DIR}/${APP_NAME}.app&quot;
+cp -r &quot;${PROJECT_DIR}/${APP_NAME}.app&quot; &quot;${BUILT_PRODUCTS_DIR}/&quot;
+
+APP_BUNDLE_PATH=&quot;${BUILT_PRODUCTS_DIR}/${APP_NAME}.app/Contents/MacOS&quot;
+APP_EXECUTABLE_PATH=&quot;${APP_BUNDLE_PATH}/${APP_NAME}&quot;
+
+cp -r &quot;${BUILT_PRODUCTS_DIR}/${FRAMEWORK_NAME}.framework&quot; ${APP_BUNDLE_PATH}
+
+insert_dylib --all-yes &quot;@loader_path/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}&quot; &quot;$APP_EXECUTABLE_PATH&quot; &quot;$APP_EXECUTABLE_PATH&quot;</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>___VARIABLE_TargetAppName___</string>
+			<key>ProductType</key>
+			<string>com.apple.product-type.application</string>
+			<key>SharedSettings</key>
+			<dict>
+				<key>INFOPLIST_FILE</key>
+				<string>___PACKAGENAME___/Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>___VARIABLE_TargetAppName___</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+			</dict>
+			<key>BuildPhases</key>
+			<array/>
+			<key>Dependencies</key>
+			<array>
+				<string>plugin</string>
+			</array>
+		</dict>
+	</array>
+	<key>Options</key>
+	<array>
+		<dict>
+			<key>Identifier</key>
+			<string>TargetAppName</string>
+			<key>Name</key>
+			<string>Target App Name:</string>
+			<key>Description</key>
+			<string>Target App Name.</string>
+			<key>Type</key>
+			<string>text</string>
+			<key>Placeholder</key>
+			<string>AppStore</string>
+		</dict>
+	</array>
+	<key>Nodes</key>
+	<array>
+		<string>___PACKAGENAME___.h</string>
+		<string>___PACKAGENAME___.m</string>
+		<string>___PACKAGENAME___Header.h</string>
+		<string>PrefixHeader.pch</string>
+		<string>../Podfile</string>
+		<string>Info.plist</string>
+	</array>
+	<key>Definitions</key>
+	<dict>
+		<key>../Podfile</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Supporting Files</string>
+			</array>
+			<key>Path</key>
+			<string>Podfile</string>
+			<key>Beginning</key>
+			<string>platform :osx, &apos;10.11&apos;
+
+target &apos;___PACKAGENAME___&apos; do
+	pod &apos;JRSwizzle&apos;, &apos;~&gt; 1.0&apos;
+end</string>
+			<key>End</key>
+			<string></string>
+		</dict>
+		<key>___PACKAGENAME___.h</key>
+		<dict>
+			<key>Path</key>
+			<string>___PACKAGENAME___.h</string>
+		</dict>
+		<key>___PACKAGENAME___.m</key>
+		<dict>
+			<key>Path</key>
+			<string>___PACKAGENAME___.m</string>
+		</dict>
+		<key>___PACKAGENAME___Header.h</key>
+		<dict>
+			<key>Path</key>
+			<string>___PACKAGENAME___Header.h</string>
+		</dict>
+		<key>PrefixHeader.pch</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Supporting Files</string>
+			</array>
+			<key>Path</key>
+			<string>PrefixHeader.pch</string>
+		</dict>
+		<key>Info.plist</key>
+		<dict>
+			<key>Group</key>
+			<array>
+				<string>Supporting Files</string>
+			</array>
+			<key>Path</key>
+			<string>Info.plist</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
