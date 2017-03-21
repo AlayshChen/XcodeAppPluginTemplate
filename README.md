@@ -1,6 +1,8 @@
 # XcodeAppPluginTemplate
 App Plugin Project Template For iOS App and Mac App.
 
+Note: I use this xcode template in articles: [我是如何利用Xcode调试开发微信消息预览插件的](http://alayshchen.github.io/2016/02/26/我是如何利用Xcode调试开发微信消息预览插件的/) [如何愉快地在Mac上刷朋友圈](http://alayshchen.github.io/2017/03/07/如何愉快地在Mac上刷朋友圈/)
+
 ## Prerequisite
 insert_dylib
 
