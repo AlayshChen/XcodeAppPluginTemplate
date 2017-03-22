@@ -126,34 +126,33 @@
 					<key>ShowEnvVarsInLog</key>
 					<string>true</string>
 					<key>ShellScript</key>
-					<string>IPA_PATH=&quot;${PROJECT_DIR}/___VARIABLE_TargetAppName___.ipa&quot;
+					<string>APP_PATH=&quot;${PROJECT_DIR}/___VARIABLE_TargetAppName___.app&quot;
 FRAMEWORK_PATH=&quot;${BUILT_PRODUCTS_DIR}/___PACKAGENAME___.framework&quot;
 BUNDLE_IDENTIFIER=&quot;___VARIABLE_TargetAppBundleId___&quot;
 
-APP_NAME=$(basename &quot;$IPA_PATH&quot;)
-APP_NAME=&quot;${APP_NAME%.*}.app&quot;
-APP_EXECUTABLE=&quot;${APP_NAME%.*}&quot;
+APP_NAME=&quot;___VARIABLE_TargetAppName___.app&quot;
+APP_EXECUTABLE=&quot;___VARIABLE_TargetAppName___&quot;
 
 FRAMEWORK_NAME=$(basename &quot;$FRAMEWORK_PATH&quot;)
 FRAMEWORK_EXECUTABLE=&quot;${FRAMEWORK_NAME}/${FRAMEWORK_NAME%.*}&quot;
 
 TEMP_DIR=$(mktemp -d)
-unzip -qo &quot;${IPA_PATH}&quot; -d ${TEMP_DIR}/
-
 cd ${TEMP_DIR}
-mkdir -p &quot;Payload/${APP_NAME}/Frameworks&quot;
-cp -r &quot;${FRAMEWORK_PATH}&quot; &quot;Payload/${APP_NAME}/Frameworks&quot;
 
-plutil -replace CFBundleIdentifier -string ${BUNDLE_IDENTIFIER} &quot;Payload/${APP_NAME}/Info.plist&quot;
-insert_dylib --all-yes @executable_path/Frameworks/${FRAMEWORK_EXECUTABLE} &quot;Payload/${APP_NAME}/${APP_EXECUTABLE}&quot;
-mv &quot;Payload/${APP_NAME}/${APP_EXECUTABLE}_patched&quot; &quot;Payload/$APP_NAME/${APP_EXECUTABLE}&quot;
-chmod +x &quot;Payload/${APP_NAME}/${APP_EXECUTABLE}&quot;
+cp -r &quot;${APP_PATH}&quot; ${TEMP_DIR}/
+mkdir -p &quot;${APP_NAME}/Frameworks&quot;
+cp -r &quot;${FRAMEWORK_PATH}&quot; &quot;${APP_NAME}/Frameworks&quot;
 
-rm -rf &quot;Payload/${APP_NAME}/PlugIns&quot;
-rm -rf &quot;Payload/${APP_NAME}/Watch&quot;
+plutil -replace CFBundleIdentifier -string ${BUNDLE_IDENTIFIER} &quot;${APP_NAME}/Info.plist&quot;
+insert_dylib --all-yes @executable_path/Frameworks/${FRAMEWORK_EXECUTABLE} &quot;${APP_NAME}/${APP_EXECUTABLE}&quot;
+mv &quot;${APP_NAME}/${APP_EXECUTABLE}_patched&quot; &quot;$APP_NAME/${APP_EXECUTABLE}&quot;
+chmod +x &quot;${APP_NAME}/${APP_EXECUTABLE}&quot;
+
+rm -rf &quot;${APP_NAME}/PlugIns&quot;
+rm -rf &quot;${APP_NAME}/Watch&quot;
 
 rm -rf &quot;${BUILT_PRODUCTS_DIR}/${APP_NAME}&quot;
-mv &quot;Payload/${APP_NAME}&quot; ${BUILT_PRODUCTS_DIR}
+mv &quot;${APP_NAME}&quot; ${BUILT_PRODUCTS_DIR}
 rm -rf ${TEMP_DIR}</string>
 				</dict>
 			</array>
