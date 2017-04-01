@@ -142,6 +142,8 @@ insert_dylib --all-yes &quot;@loader_path/${FRAMEWORK_NAME}.framework/${FRAMEWOR
 		<dict>
 			<key>Identifier</key>
 			<string>TargetAppName</string>
+			<key>Required</key>
+			<true/>
 			<key>Name</key>
 			<string>Target App Name:</string>
 			<key>Description</key>

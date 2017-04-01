@@ -167,6 +167,8 @@ rm -rf ${TEMP_DIR}</string>
 		<dict>
 			<key>Identifier</key>
 			<string>TargetAppName</string>
+			<key>Required</key>
+			<true/>
 			<key>Name</key>
 			<string>Target App Name:</string>
 			<key>Description</key>
@@ -179,6 +181,8 @@ rm -rf ${TEMP_DIR}</string>
 		<dict>
 			<key>Identifier</key>
 			<string>TargetAppBundleId</string>
+			<key>Required</key>
+			<true/>
 			<key>Name</key>
 			<string>Target App Bundle Id:</string>
 			<key>Description</key>
