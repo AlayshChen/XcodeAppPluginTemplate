@@ -4,7 +4,7 @@
 App Plugin Project Template For iOS App and Mac App.
 
 说明：我将过去两篇文章中涉及到的工程整理出工程模版，方便对第三方app进行hook.   
-文章链接：[我是如何利用Xcode调试开发微信消息预览插件的](http://alayshchen.github.io/2016/02/26/我是如何利用Xcode调试开发微信消息预览插件的/) [如何愉快地在Mac上刷朋友圈](http://alayshchen.github.io/2017/03/07/如何愉快地在Mac上刷朋友圈/)
+文章链接：[我是如何利用Xcode调试开发微信消息预览插件的](http://alayshchen.github.io/2016/02/26/我是如何利用Xcode调试开发微信消息预览插件的/) 
 
 ## 前提
 
